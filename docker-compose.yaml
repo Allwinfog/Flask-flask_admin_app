@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  flask_web:
+    platform: linux/x86_64
+    container_name: flask_web
+    build:
+      context: .
+      dockerfile: Dockerfile-app
+    volumes:
+      - ./source_code:/app
+    depends_on:
+      - flask_mysql
+    ports:
+      - "5062:5061"
+    develop:
+      watch:
+        - action: rebuild
+          path: ./source_code/**/*
+    restart: always
+
+  flask_mysql:
+    platform: linux/x86_64
+    container_name: flask_mysql
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
+    ports:
+      - "5063:3306"
+    volumes:
+      - ./mysql-db-data:/var/lib/mysql/
+      - ./mysql-db-data/mysql-log:/var/log/mysql/error.log
+    restart: always
+
+volumes:
+  mysql-db-data:
+    external: false
