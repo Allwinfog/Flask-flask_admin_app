@@ -1,127 +1,125 @@
 {% extends 'layout/master.html' %}
 
 
+{% block body %}
 
 
-
-  {% block body %}
-
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Contact</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Contact</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Contact</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Contact</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
     </section>
-
 
 
     <!-- Main content -->
     <section class="content">
 
-      <!-- Default box -->
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Title</h3>
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Title</h3>
 
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-        </div>
-        <div class="card-body">
-
-
-      <section class="content">
-          <div class="box box-primary">
-            <div class="box-header">
-              <a href="/add">
-              	<center>
-              		<button type="button" class="btn btn-primary btn-flat">
-              			<span class="glyphicon glyphicon-plus"></span> Add Contact
-              		</button>
-              	</center>
-              </a>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
             </div>
+            <div class="card-body">
 
-            <div class="box-body">
-              <table id="dataphone" class="table table-bordered table-striped">
-                <thead align="center">
-                  <tr>
-                    <th >Name</th>
-                    <th>Phone Number</th>
-                    <th>Address</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
 
-                <tbody>
-                    {% if data|length == 0 %}
-                  <tr>
-                    <td>No Data</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                    {% else %}
-                  <tr>
-                      {% for row in data %}
-                    <td>{{ row[1] }}</td>
-                    <td>{{ row[2] }}</td>
-                    <td>{{ row[3] }}</td>
-                    <td align="center">
-                      <a href="/update_contact_get/{{ row[0]}}">
-                        <button type="button" class="btn btn-sm btn-primary btn-flat"><i class="fa fa-fw fa-pencil-square-o"></i></button>
-                        </a>
-                      <a href="/delete_contact_get/{{ row[0]}}">
-                        <button type="button" class="btn btn-sm btn-danger btn-flat"><i class="fa fa-fw fa-trash-o"></i></button>
-                      </a>
-                    </td>
-                  </tr>
-                      {% endfor %}
-                    {% endif%}
-                </tbody>
-              </table>
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <a href="{{url_for('add_contact_get')}}">
+                                <button type="button" class="btn btn-primary btn-flat">
+                                    <span class="glyphicon glyphicon-plus"></span> Add Contact
+                                </button>
+                            </a>
+                        </div>
+
+                        <div class="box-body">
+                            <table id="data_contact" class="table table-bordered table-striped">
+                                <thead align="center">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Address</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% if data|length == 0 %}
+                                <tr>
+                                    <td>No Data</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    {% for row in data %}
+                                    <td>{{ row[1] }}</td>
+                                    <td>{{ row[2] }}</td>
+                                    <td>{{ row[3] }}</td>
+                                    <td align="center">
+                                        <a href="/update_contact_get/{{ row[0]}}">
+                                            <button type="button" class="btn btn-sm btn-primary btn-flat"><i
+                                                    class="fa fa-fw fa-pencil-square-o"></i></button>
+                                        </a>
+                                        <a href="/delete_contact_get/{{ row[0]}}">
+                                            <button type="button" class="btn btn-sm btn-danger btn-flat"><i
+                                                    class="fa fa-fw fa-trash-o"></i></button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% endif%}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
             </div>
-          </div>
-        </section>
-
+            <!-- /.card-body -->
+            <div class="card-footer">
+                Footer
+            </div>
+            <!-- /.card-footer-->
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
-        <!-- /.card-footer-->
-      </div>
-      <!-- /.card -->
+        <!-- /.card -->
 
     </section>
     <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+</div>
+<!-- /.content-wrapper -->
 
-{% endblock %}
-
-  <script>
+<script>
     $(function () {
-      $("#dataphone").DataTable();
+      $("#data_contact").DataTable();
       $(document).attr('title', 'Admin Portal | Contact');
 
     });
-  </script>
+
+</script>
+
+{% endblock %}
+
